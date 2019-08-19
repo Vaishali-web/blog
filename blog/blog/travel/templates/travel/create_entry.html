@@ -1,0 +1,28 @@
+{% extends "travel/base.html" %}
+{% block content %}
+<div class="col-md-8">
+    <br>
+    
+    
+
+    <!-- Blog Post -->
+    <div class="card mb-4 mt-4">
+      <div class="card-header">
+        Create Blog Post
+       
+      </div>
+      <div class="card-body">
+       <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary">POST ENTRY</button> 
+       </form>
+      </div>
+    </div>
+   
+
+    
+   
+
+  </div>
+  {% endblock %}
