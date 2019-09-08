@@ -1,5 +1,7 @@
 {% extends "travel/base.html" %}
 {% block content %}
+{% load static %}
+<body background={% static "images/multipat.jpg" %} style="padding-top:90px;">
 <div class="col-md-8">
     {% for entry in blog_travel %}
 
@@ -9,6 +11,7 @@
         <h2 class="card-title">{{entry.entry_title}}</h2>
         <p class="card-text">{{entry.entry_text|truncatechars:100}}</p>
         <a href="{% url 'blog-travel-detail' entry.pk %}" class="btn btn-primary btn-sm">Read More &rarr;</a>
+        
       </div>
       <div class="card-footer text-muted">
         Posted on {{entry.entry_date}} by
@@ -19,7 +22,7 @@
     {% if is_paginated %}
 
     <!-- Pagination -->
-    <ul class="pagination justify-content-center mb-4">
+    <ul class="pagination justify-content-center mb-4" style="padding-bottom:50px;">
         {% if page_obj.has_previous %}
       <li class="page-item">
         <a class="page-link" href="?page={{page_obj.previous_page_number}}">&larr; Previous Page</a>
@@ -33,4 +36,7 @@
     </ul>
     {% endif %}
   </div>
+
+  
   {% endblock %}
+</body>

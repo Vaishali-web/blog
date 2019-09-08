@@ -1,0 +1,22 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+{% load static %}
+<body background={% static "images/multipat.jpg" %}>
+<div class=container >
+<div class="cols-md-5" style="padding-top: 120px;padding-bottom: 80px">
+        <a href="{% url 'blog-home' %}" style="color:white"><strong>BACK TO HOME</strong></a>
+    
+<fieldset class='border p-2 mx-auto' style="width: 550px;background-color:white;">
+    <legend class="border p-2">Delete Post</legend>
+    <form method="POST" class='p-3'>
+        {% csrf_token %}
+        <h3>Are you sure you want to delete the post {{ object.entry_title }}? Click 'Yes' to delete</h3>
+        <button class='btn btn-danger' type='submit'>Yes, delete</button>
+        <button class='btn btn-secondary' href="{% url 'blog-travel-detail' object.id%}">Cancel</button>
+    </form>
+</fieldset>
+</div>
+</div>
+
+</body>
+{% endblock%}

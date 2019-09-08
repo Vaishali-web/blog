@@ -1,9 +1,11 @@
 {% extends "travel/base.html" %}
 {% block content %}
+{% load static %}
+<body background={% static "images/backpurple.jpg" %}></body>
 <div class="col-md-8 mt-4" >
     <br>
     <br>
-   <h4>You Have Successfully Logged Out !!<a href="{% url 'login' %}">Log Back In Here</a></h4>
+   <p style="color:white">You Have Successfully Logged Out !!<br><a href="{% url 'login' %}" style="color:white;"><h3 class="strong">Click</h3></a></p><p style="color:white">To Log Back In Here</p>
    
 
     

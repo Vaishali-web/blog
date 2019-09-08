@@ -16,26 +16,75 @@
 
   <!-- Custom styles for this template -->
   <link href="{% static 'travel/css/blog-home.css' %}" rel="stylesheet">
+  <style>
+    .btn-rounded{
+      border-radius: 20%;
+      
+    }
+    .btn-warning{
+      background-color:#B39BC8;
+    }
+  </style>
+  
 
 </head>
 
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">My Blog</a>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #f18d9e;color:black;height:80px;">
+    <div class="container" style="color:maroon">
+      <img src="{% static 'images/airplane.png' %}" width="80px" height="80px" class="img" style="padding-right:20px;"><h4>TRAVELOG</h4>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
+          
         <ul class="navbar-nav ml-auto">
+           
+            <li class="nav-item">
+                <a class="nav-link btn btn-warning btn-rounded text-white mr-2" href="{% url 'home' %}" ><strong>HOME</strong></a>
+              </li>
+            <li class="nav-item">
+                <a class="nav-link btn btn-warning btn-rounded text-white mr-2" href="{% url 'blog-home' %}"><strong>BLOG POSTS</strong></a>
+              </li>
+              
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link btn btn-warning btn-rounded text-white mr-2" href="{% url 'profile' %}"><strong>PROFILE</strong></a>
+                </li>
+               
+                <li class="nav-item">
+                    <a class="nav-link btn btn-warning btn-rounded text-white mr-2" href="{% url 'blog-create-entry' %}" ><strong>POST NOW</strong></a>
+                  </li>
+                 
+                <li class="nav-item">
+                   
+                    <a class="nav-link btn btn-warning btn-rounded text-white mr-2" href="{% url 'logout' %}" ><strong>LOGOUT</strong></a>
+                    
+                </li>
+                <li class="nav-item" style="padding-right: 30px"> 
+                    <a class="nav-link" href="#" style="color:white">
+                     <strong> HI, {{user.username}} !!</strong>
+                       </a>
+                    
+                 </li>
+               
+               {% else %}
+              
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'blog-create-entry' %}">Post Now</a>
+              <a class="nav-link btn btn-warning btn-rounded text-white mr-2" href="{% url 'register' %}" ><strong>REGISTER</strong></a>
+            </li>
+            
+            
+            <li class="nav-item">  
+            <a class="nav-link btn btn-warning btn-rounded text-white mr-2" href="{% url 'login' %}" ><strong>LOGIN</strong></a>
+              
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
-          </li>
+         
+          
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -48,14 +97,27 @@
       {% block content %} {% endblock %}
 
       <!-- Blog Entries Column -->
+  
      
        <!-- Sidebar Widgets Column -->
+  
+  {%  ifnotequal request.path '/' %}
+  <div class="col-md-7"> 
+      
+    </div>
+    
     <div class="col-md-4">
+        
 
                 <!-- Side Widget -->
-      <div class="card my-4">
-          <h5 class="card-header text-center">Logged in Information</h5>
+                
+      <div class="card my-4" style="position: fixed;
+      bottom: 10px;
+      right: 10px;">
+          {% if user.is_authenticated %}
+          <h5 class="card-header text-center">User Information</h5>
           <div class="card-body">
+              <img class="mr-3 img-thumbnail w-30 h-30" src="{{ user.profile.image.url}}" alt="Generic placeholder image">
             <ul class="list-unstyled mb-0">
                 <li>
                     <p> <strong>Username:</strong> {{user.username}} </p>
@@ -65,10 +127,13 @@
                 </li>
             </ul>    
           </div>
+          {% endif %}
         </div>
 
-
+       
       </div>
+      {% endifnotequal %}
+    
 
     </div>
     <!-- /.row -->
@@ -77,11 +142,14 @@
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+  <footer
+  class="footer fixed-bottom"
+  style=" margin: 0px; background-color: aquamarine; color:black; bottom: 0px;position:bottom;width:100%; min-height:10px;">
+  <div class="row" style="background-color: aquamarine; color:black">
+    <div class="col-md-11" style="text-align: center">
+      <strong><br>Copyright &copy; travelog Inc,.<br></strong>
     </div>
-    <!-- /.container -->
+  </div>
   </footer>
 
   <!-- Bootstrap core JavaScript -->

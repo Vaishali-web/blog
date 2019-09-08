@@ -1,0 +1,40 @@
+{% extends "travel/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+<body background={% static "images/wood.jpg" %}>
+<div class="container">
+    <br><br>
+
+<div class='mt-4 border w-50 color-black'style="padding-top:10;padding-bottom:10px;padding-left:20px;background:white;">
+    <br><br>
+    
+    <div class="media">
+        <img class="mr-3 img-thumbnail w-30 h-30" src="{{ user.profile.image.url}}" alt="Generic placeholder image">
+        <div class="media-body">
+            <h5 class="mt-0 ml-3">{{user.username}}</h5>
+            <p class="ml-3">E-Mail ID : {{ user.email}}</p>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container" style="padding-left: 10px;max-width:550px;float:left;padding-bottom:50px;background-color: white;">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="media border p-3">
+            
+            <div class="media-body">
+                <legend >Update Profile Info</legend>
+                <hr>
+                {% csrf_token %}
+                {{ user_form | crispy }}
+                {{ profile_form | crispy }}
+                <button class='btn btn-warning'>Update</button>
+            </div>
+        
+        </div>
+    </form>
+</div>
+</div>
+</body>
+{% endblock %}
+

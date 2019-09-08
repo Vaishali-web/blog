@@ -1,5 +1,8 @@
 {% extends "travel/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
+{% load static %}
+<body background={% static "images/leaf.jpg" %}>
 <div class="col-md-8">
     <br>
     
@@ -12,10 +15,13 @@
        
       </div>
       <div class="card-body">
+        
        <form method="POST">
         {% csrf_token %}
-        {{form.as_p}}
+        {{form|crispy}}
+        <div class="mx-auto mt-3" style="max-width:300px">
         <button type="submit" class="btn btn-primary">Create Account</button> 
+        </div>
        </form>
       </div>
     </div>
@@ -26,3 +32,4 @@
 
   </div>
   {% endblock %}
+  </body>

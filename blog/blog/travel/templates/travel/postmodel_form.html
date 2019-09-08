@@ -1,0 +1,31 @@
+{% extends 'travel/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block content %}
+<body background={% static "images/wood.jpg" %}>
+    
+<div class="container" style="padding: 50px;">
+    <br>
+        <a href="{% url 'blog-home' %}" style="color:black"><strong>BACK TO HOME</strong></a>
+    <br><br>
+<div class="col-md-6" style="background-color: #C38D9E">
+<fieldset class='border p-2 mx-auto' style='width: 490px;'>
+    <legend class="border p-2">Blog Post</legend>
+    <form method="POST" class='p-3'>
+        {% csrf_token %}
+        
+        {{ form | crispy }}
+        <div class="mx-auto mt-2" style="max-width:300px">
+        <button class= "btn btn-primary" type = "submit" href="{% url 'blog-travel-detail' object.id %} ">Submit</a>
+        </div>
+        <!-- <textarea rows="50" cols="50">{{object.entry_text}}</textarea> -->
+    </form>
+</fieldset>
+
+</div>
+</div>
+</body>
+
+{% endblock%}
